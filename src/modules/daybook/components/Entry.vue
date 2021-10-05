@@ -1,6 +1,9 @@
 <template>
   <div class="entry-container mb-3 pointer p-2"
-       @click="$router.push({ name: 'entry', params: { id: entry.id } })">
+       @click="$router.push({ name: 'entry', params: { id: entry.id } }); this.$emit('closeListEntry')"
+       
+       >
+       
       
       <!-- Título -->
       <div class="entry-title d-flex">
@@ -24,8 +27,9 @@ export default {
     entry: {
       type: Object,
       required: true
-    }
+    },
   },
+  
   computed: {
     shortText() {
        return (this.entry.text.length > 130)
@@ -43,10 +47,11 @@ export default {
     yearDay() {
       const date = new Date( this.entry.date)
       return `${ date.getFullYear()}, ${ days[ date.getDay() ]}`
-    }
+    },
+    
+  },
   
-  
-  }
+   
 }
 </script>
 
@@ -64,4 +69,8 @@ export default {
 .entry-description {
   font-size: 12px;
 }
+.hiddenListEntry {
+  display: none;
+}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="entry-list-container">
+  <div class="entry-list-container ">
     <div class="px-2 pt-2">
       <input 
          type="text"
@@ -10,7 +10,7 @@
     
     <div class="mt-2 d-flex flex-column">
       <button class="btn btn-primary mx-3"
-        @click="$router.push({ name: 'entry', params: { id: 'new' } })">
+        @click="$router.push({ name: 'entry', params: { id: 'new' } }); closeListEntry()">
         <i class="fa fa-plus-circle"></i>
         Nueva entrada
       </button>
@@ -21,7 +21,7 @@
         v-for="entry in entriesByTerm"
         :key="entry.id"
         :entry="entry"
-        
+        @closeListEntry="closeListEntry"
       />
     
     </div>
@@ -32,10 +32,20 @@
 import { defineAsyncComponent } from 'vue'
 import { mapGetters } from 'vuex'
 
+
 export default {
     components: {
       Entry: defineAsyncComponent( () => import('./Entry.vue'))
     },
+    props: {
+      
+      showEntry: {
+        type: Boolean
+      },
+      
+  
+    },
+
     computed: {
       ...mapGetters( 'journal', ['getEntriesByTerm']),
       entriesByTerm() {
@@ -44,10 +54,20 @@ export default {
     },
     data() {
       return {
-        term: ''
+        term: '',
+        
       }
+      
+    },
+    methods: {
+    closeListEntry() {
+      this.$emit('hiddenMenuBar')
     }
+  }  
+    
 }
+  
+
 </script>
 
 <style lang="scss" scoped>
@@ -70,6 +90,12 @@ export default {
     background-color: grey; /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
     border: 3px solid grey; /* creates padding around scroll thumb */
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .entry-list-container {
+    width: 100vw;
   }
 }
 </style>

@@ -28,4 +28,11 @@ export default {
 div {
     height: 100%;
 }
+
+
+@media screen and (max-width: 690px) {
+  div h1 {
+    display: none;
+  }
+}
 </style>

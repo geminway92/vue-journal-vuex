@@ -70,6 +70,10 @@ export default {
       type: String,
       required: true,
     },
+    entryShow: {
+      type: Boolean,
+      default: false
+    }
   },
   name: 'EntryView',
   components: {
@@ -145,7 +149,6 @@ export default {
 
       this.file = null
       Swal.fire('Guardado', 'Entrada registrada con éxito', 'success')
-
     },
 
     async onDeleteEntry() {
@@ -232,5 +235,17 @@ img {
   bottom: 150px;
   right: 20px;
   box-shadow: 0px 5px 10px rgba($color: #000000, $alpha: 0.2);
+}
+
+@media screen and (max-width: 690px) {
+  img {
+    width: 100px;
+  }
+  button {
+    margin-bottom: 10px;
+  
+  }
+
+
 }
 </style>

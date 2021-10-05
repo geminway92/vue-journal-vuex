@@ -1,5 +1,6 @@
 <template>
-    <Navbar/>
+    
+    <Navbar @hiddenMenuBar="hiddenMenuBar" :hiddenListEntry="hiddenListEntry" :disableBarMenu="disableBarMenu"/>
 
     <div v-if="isLoading" 
         class="row justify-content-md-center">
@@ -12,12 +13,14 @@
     </div>
 
     <div v-else 
-        class="d-flex">
-        <div class="col-4">
-            <EntryList/>
+        class="d-flex" >
+        <div v-if="!hiddenListEntry"  class="col-4">
+            <EntryList
+            @hiddenMenuBar="hiddenMenuBar"
+            />
         </div>
-        <div class="col">
-            <router-view/>
+        <div v-if="showEntry" class="col">
+            <router-view />
         </div>
     </div>
 </template>
@@ -34,14 +37,46 @@ export default {
         Navbar: defineAsyncComponent( () => import('../components/Navbar.vue')),
         EntryList: defineAsyncComponent( () => import('../components/EntryList.vue')),
     },
+    data(){
+        return{
+            hiddenListEntry: false,
+            showEntry: true,
+            disableBarMenu: false,
+        }
+    },
+
     methods: {
         ...mapActions('journal', ['loadEntries']),
+        
+        hiddenMenuBar() {
+            if(screen.width <= 690){
+                this.showEntry = !this.showEntry
+                this.hiddenListEntry = !this.hiddenListEntry    
+
+            }
+        },
+        
+        // hiddenEntry() {
+        //     if(screen.width >= 691){
+
+        //     }
+        // },
+
+        hiddenEntryInMobile() {
+            if(screen.width <= 690) {
+                this.showEntry = false
+                this.disableBarMenu = true
+                
+            }
+        },
+
     },
     computed: {
         ...mapState('journal',['isLoading']),
     },
     created() {
         this.loadEntries()
+        this.hiddenEntryInMobile()
     }
     
 }

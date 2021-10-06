@@ -7,7 +7,7 @@
         <span class="mx-2 fs-4 fw-light">{{ yearDay }}</span>
       </div>
 
-      <div>
+      <div class="button-container">
         <input
           type="file"
           @change="onSelectedImage"
@@ -19,14 +19,12 @@
           v-if="entry.id"
           class="btn btn-danger mx-2"
           @click="onDeleteEntry">
-          Borrar
           <i class="fa fa-trash-alt"></i>
         </button>
 
         <button class="btn btn-primary"
           @click="onSelectImage">
-          Subir foto
-          <i class="fa fa-upload"></i>
+          <i class="fa fa-images"></i>
         </button>
       </div>
     </div>
@@ -239,11 +237,13 @@ img {
 
 @media screen and (max-width: 690px) {
   img {
-    width: 100px;
+    width: 25%;
   }
-  button {
-    margin-bottom: 10px;
   
+  .button-container {
+    display: flex;
+    width: min-content;
+    height: min-content;
   }
 
 

@@ -55,7 +55,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .entry-container {
     border-bottom: 1px solid #2c3e50;
     transition: 0.2s all ease-in;

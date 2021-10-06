@@ -32,7 +32,9 @@ div {
 
 @media screen and (max-width: 690px) {
   div h1 {
-    display: none;
+    position: relative;
+    font-size: 1em;
+    top: 10em;
   }
 }
 </style>

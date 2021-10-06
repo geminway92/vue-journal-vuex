@@ -56,12 +56,6 @@ export default {
             }
         },
         
-        // hiddenEntry() {
-        //     if(screen.width >= 691){
-
-        //     }
-        // },
-
         hiddenEntryInMobile() {
             if(screen.width <= 690) {
                 this.showEntry = false

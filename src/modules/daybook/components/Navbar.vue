@@ -88,7 +88,7 @@ button {
 
 img.icon-arrow {
     width: 1.1em;
-    margin:  .1em 1em .4em 0;
+    margin:  .2em 0em 0em .4em;
     
 }
 
